@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat by Phase - HerHealth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .phase-container {
+            max-width: 1000px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+        .phase-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 107, 158, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .phase-card:hover {
+            transform: translateY(-5px);
+        }
+        .phase-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .phase-img-box {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .phase-content {
+            flex: 1.5;
+        }
+        .phase-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-family: 'Fredoka', sans-serif;
+        }
+        .food-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .food-tag {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: floatTag 3s ease-in-out infinite alternate;
+        }
+        @keyframes floatTag {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        .emoji-art {
+            position: absolute;
+            animation: bounceEmoji 2s infinite alternate;
+        }
+        .emoji-art.e1 { top: 20%; left: 20%; animation-delay: 0s; font-size: 4rem;}
+        .emoji-art.e2 { bottom: 20%; right: 20%; animation-delay: 0.5s; font-size: 5rem;}
+        .emoji-art.e3 { top: 30%; right: 25%; animation-delay: 1s; font-size: 3.5rem;}
+        .emoji-art.e4 { bottom: 30%; left: 30%; animation-delay: 1.5s; font-size: 3rem;}
+        @keyframes bounceEmoji {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.1) translateY(-10px); }
+        }
+        /* Specific colors */
+        .menstrual-box { background: linear-gradient(135deg, #ffccd5, #ff8fa3); }
+        .follicular-box { background: linear-gradient(135deg, #d8f3dc, #95d5b2); }
+        .ovulation-box { background: linear-gradient(135deg, #ffecd1, #ffb5a7); }
+        .luteal-box { background: linear-gradient(135deg, #e0c3fc, #cdb4db); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <i class="fa-solid fa-venus"></i>
+            <span>HerHealth</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Back to Hub</a>
+            <a href="shop-for-her.html" class="nav-btn" style="text-decoration:none; color: var(--primary);"><i class="fa-solid fa-gift"></i> Shop for Her</a>
+        </div>
+    </nav>
+
+    <div class="phase-container fade-in">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-size: 3.5rem; color: var(--primary); font-family: 'Fredoka', sans-serif;">Eat by Phase 🍓</h1>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Nourish your beautiful body according to your menstrual cycle. These superfoods are here to keep your hormones happy!</p>
+        </div>
+
+        <!-- Menstrual Phase -->
+        <div class="phase-card">
+            <div class="phase-img-box menstrual-box">
+                <div class="emoji-art e1">🍫</div>
+                <div class="emoji-art e2">☕</div>
+                <div class="emoji-art e3">🍲</div>
+                <div class="emoji-art e4">🥬</div>
+            </div>
+            <div class="phase-content">
+                <h2 class="phase-title" style="color: #be185d;">🩸 Menstrual Phase</h2>
+                <p>During your period, your iron and energy levels drop. Warm, comforting foods and iron-rich meals help replenish your body and soothe cramps.</p>
+                <div class="food-tags">
+                    <span class="food-tag" style="animation-delay: 0.1s;">🍫 Dark Chocolate (Magnesium)</span>
+                    <span class="food-tag" style="animation-delay: 0.2s;">🍵 Raspberry/Ginger Tea</span>
+                    <span class="food-tag" style="animation-delay: 0.3s;">🍲 Warm Soups & Broth</span>
+                    <span class="food-tag" style="animation-delay: 0.4s;">🥬 Spinach & Kale (Iron)</span>
+                    <span class="food-tag" style="animation-delay: 0.5s;">🫘 Lentils & Beans</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Follicular Phase -->
+        <div class="phase-card">
+            <div class="phase-img-box follicular-box">
+                <div class="emoji-art e1">🥑</div>
+                <div class="emoji-art e2">🥗</div>
+                <div class="emoji-art e3">🍓</div>
+                <div class="emoji-art e4">🍋</div>
+            </div>
+            <div class="phase-content">
+                <h2 class="phase-title" style="color: #15803d;">🌱 Follicular Phase</h2>
+                <p>Your energy is rising! Eat fresh, vibrant, and light foods to support estrogen production and follicle development.</p>
+                <div class="food-tags">
+                    <span class="food-tag" style="animation-delay: 0.1s;">🥑 Avocado (Healthy Fats)</span>
+                    <span class="food-tag" style="animation-delay: 0.2s;">🍓 Fresh Berries</span>
+                    <span class="food-tag" style="animation-delay: 0.3s;">🎃 Pumpkin Seeds</span>
+                    <span class="food-tag" style="animation-delay: 0.4s;">🍋 Citrus Fruits (Vitamin C)</span>
+                    <span class="food-tag" style="animation-delay: 0.5s;">🥦 Broccoli & Greens</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ovulation Phase -->
+        <div class="phase-card">
+            <div class="phase-img-box ovulation-box">
+                <div class="emoji-art e1">🍣</div>
+                <div class="emoji-art e2">🍉</div>
+                <div class="emoji-art e3">🥜</div>
+                <div class="emoji-art e4">🍅</div>
+            </div>
+            <div class="phase-content">
+                <h2 class="phase-title" style="color: #a16207;">✨ Ovulation Phase</h2>
+                <p>You're glowing and full of energy! Focus on anti-inflammatory foods, fiber, and zinc to support egg release and clear skin.</p>
+                <div class="food-tags">
+                    <span class="food-tag" style="animation-delay: 0.1s;">🍉 Watermelon (Hydration)</span>
+                    <span class="food-tag" style="animation-delay: 0.2s;">🥜 Almonds & Walnuts</span>
+                    <span class="food-tag" style="animation-delay: 0.3s;">🍣 Salmon (Omega 3)</span>
+                    <span class="food-tag" style="animation-delay: 0.4s;">🍅 Tomatoes & Bell Peppers</span>
+                    <span class="food-tag" style="animation-delay: 0.5s;">🫐 Figs & Pomegranate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Luteal Phase -->
+        <div class="phase-card">
+            <div class="phase-img-box luteal-box">
+                <div class="emoji-art e1">🍠</div>
+                <div class="emoji-art e2">🍌</div>
+                <div class="emoji-art e3">🥣</div>
+                <div class="emoji-art e4">🥥</div>
+            </div>
+            <div class="phase-content">
+                <h2 class="phase-title" style="color: #6d28d9;">🌙 Luteal Phase</h2>
+                <p>Energy may dip as PMS approaches. Eat complex carbs, magnesium-rich foods, and B vitamins to stabilize your mood and cravings.</p>
+                <div class="food-tags">
+                    <span class="food-tag" style="animation-delay: 0.1s;">🍠 Sweet Potato (Complex Carbs)</span>
+                    <span class="food-tag" style="animation-delay: 0.2s;">🍌 Bananas (Potassium)</span>
+                    <span class="food-tag" style="animation-delay: 0.3s;">🥣 Oatmeal & Quinoa</span>
+                    <span class="food-tag" style="animation-delay: 0.4s;">🥥 Coconut</span>
+                    <span class="food-tag" style="animation-delay: 0.5s;">🌰 Walnuts & Sesame Seeds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop for Her - HerHealth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .shop-container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+        .shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .shop-header h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+        }
+        .shop-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 158, 0.2);
+        }
+        .product-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .product-img-wrapper {
+            overflow: hidden;
+        }
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, #ffffff, #fff5f8);
+        }
+        .product-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-family: 'Fredoka', sans-serif;
+        }
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .buy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .buy-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 158, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <i class="fa-solid fa-venus"></i>
+            <span>HerHealth</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Back to Hub</a>
+            <a href="eat-by-phase.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-utensils"></i> Eat by Phase</a>
+        </div>
+    </nav>
+
+    <div class="shop-container fade-in">
+        <div class="shop-header">
+            <h1>Shop for Her 🎁</h1>
+            <p>Send a thoughtful hamper to your loved ones to brighten their day, support their health, or just make them smile!</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1: Chocolate Box -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Premium Chocolate Box" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Premium Chocolate Hamper</h3>
+                    <p class="product-desc">A delightful assortment of dark, milk, and white chocolates. Perfect for satisfying cravings and boosting those happy hormones! 🍫</p>
+                    <div class="product-price">₹1,499</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 2: Roses -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?auto=format&fit=crop&w=600&q=80" alt="Rose Bouquet" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Elegant Rose Bouquet</h3>
+                    <p class="product-desc">Fresh, vibrant pink and red roses to show your love and appreciation. Flowers are scientifically proven to boost mood! 🌹</p>
+                    <div class="product-price">₹999</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 3: Snacks Box -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=600&q=80" alt="Healthy Snack Box" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Healthy Munchies Box</h3>
+                    <p class="product-desc">Guilt-free snacking! Includes roasted makhana, mixed seeds, and baked crisps. Perfect for the luteal phase cravings! 🍿</p>
+                    <div class="product-price">₹1,199</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 4: Nutritional Bars -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80" alt="Nutritional Seeds" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Protein & Energy Bars</h3>
+                    <p class="product-desc">Pack of 12 delicious nutritional bars. Ideal for a quick energy boost during the follicular or ovulation phases! 🥜</p>
+                    <div class="product-price">₹899</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+            
+            <!-- Product 5: Self Care Kit -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" alt="Self Care Kit" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Ultimate Self-Care Kit</h3>
+                    <p class="product-desc">Includes bath bombs, scented candles, face masks, and essential oils. The perfect remedy for period pain and stress. ✨</p>
+                    <div class="product-price">₹2,499</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+            
+            <!-- Product 6: Herbal Tea -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?auto=format&fit=crop&w=600&q=80" alt="Chamomile Tea Collection" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Herbal Tea Collection</h3>
+                    <p class="product-desc">Soothing chamomile, refreshing peppermint, and antioxidant-rich green tea to calm the mind and soothe the stomach. 🍵</p>
+                    <div class="product-price">₹799</div>
+                    <button class="buy-btn" onclick="window.location.href='checkout.html'"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerHealth - Women's Health Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-active">
+    <!-- ===== LOGIN PAGE OVERLAY ===== -->
+    <div id="login-overlay" class="login-overlay">
+        <!-- Floating hearts background -->
+        <div class="login-bg-shapes">
+            <span>🌸</span><span>💕</span><span>✨</span><span>🌷</span>
+            <span>💖</span><span>🌸</span><span>💗</span><span>✨</span>
+            <span>🌺</span><span>💓</span>
+        </div>
+
+        <div class="login-card">
+            <!-- Logo / Brand -->
+            <div class="login-brand">
+                <div class="login-logo-circle">
+                    <i class="fa-solid fa-venus"></i>
+                </div>
+                <h1 class="login-title">HerHealth</h1>
+                <p class="login-subtitle">Your personal women's wellness companion 🌸</p>
+            </div>
+
+            <!-- Tabs: Login / Sign Up -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Log In</button>
+                <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                <div class="login-input-group">
+                    <label for="login-email"><i class="fa-solid fa-envelope"></i> Email</label>
+                    <input type="email" id="login-email" placeholder="you@example.com" required>
+                </div>
+                <div class="login-input-group">
+                    <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-pw" onclick="togglePassword('login-password', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                <p class="forgot-link"><a href="#">Forgot password? 🌷</a></p>
+                <button type="submit" class="login-btn">Log In <i class="fa-solid fa-arrow-right"></i></button>
+                <div id="login-error" class="auth-error hidden">Hmm, check your email and password! 💕</div>
+            </form>
+
+            <!-- SIGN UP FORM -->
+            <form id="signup-form" class="auth-form hidden" onsubmit="handleSignUp(event)">
+                <div class="login-input-group">
+                    <label for="signup-name"><i class="fa-solid fa-user"></i> Name</label>
+                    <input type="text" id="signup-name" placeholder="Your lovely name" required>
+                </div>
+                <div class="login-input-group">
+                    <label for="signup-email"><i class="fa-solid fa-envelope"></i> Email</label>
+                    <input type="email" id="signup-email" placeholder="you@example.com" required>
+                </div>
+                <div class="login-input-group">
+                    <label for="signup-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                        <button type="button" class="toggle-pw" onclick="togglePassword('signup-password', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">Create Account <i class="fa-solid fa-sparkles"></i></button>
+                <div id="signup-success" class="auth-success hidden">Welcome to HerHealth! 🎉</div>
+            </form>
+
+            <p class="login-footer-note">Made with 💖 by Ayushi & Riya</p>
+        </div>
+    </div>
+
+    <!-- BACKGROUND ANIMATION BUBBLES -->
+    <ul class="bg-bubbles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fa-solid fa-venus"></i>
+            <span>HerHealth</span>
+        </div>
+        <div class="nav-links" id="main-nav-links">
+            <button class="nav-btn active" data-target="home-view"><i class="fa-solid fa-house"></i> Home</button>
+            <button class="nav-btn" data-target="tracker-view"><i class="fa-solid fa-calendar-days"></i> Tracker</button>
+            <button class="nav-btn" data-target="bmi-view"><i class="fa-solid fa-weight-scale"></i> BMI</button>
+            <button class="nav-btn" data-target="learn-view"><i class="fa-solid fa-book-open"></i> Learn</button>
+            <button class="nav-btn" data-target="plans-view"><i class="fa-solid fa-apple-whole"></i> Plans</button>
+            <button class="nav-btn" data-target="quizzes-view"><i class="fa-solid fa-clipboard-question"></i> Quizzes</button>
+            <button class="nav-btn" data-target="doctors-view"><i class="fa-solid fa-user-doctor"></i> Doctors</button>
+            <a href="eat-by-phase.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-utensils"></i> Diet by Phase</a>
+            <a href="shop-for-her.html" class="nav-btn" style="text-decoration:none; color: var(--primary);"><i class="fa-solid fa-gift"></i> Shop</a>
+        </div>
+        <div class="nav-user-area" id="nav-user-area" style="display:none;">
+            <div class="nav-avatar" id="nav-avatar"><i class="fa-solid fa-heart"></i></div>
+            <span class="nav-username" id="nav-username">Hello!</span>
+            <button class="logout-btn" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- HOME VIEW -->
+        <section id="home-view" class="view active-view fade-in">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h1>Empowering Women's Health, <span>Every Day.</span></h1>
+                    <p>Welcome to HerHealth. Track your cycle, calculate your BMI, learn about your body, and build healthier habits—all in one beautiful, private space.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <button class="primary-btn" onclick="navigateTo('tracker-view')">Start Tracking</button>
+                        <button class="primary-btn outline" onclick="navigateTo('learn-view')">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="hero-illustration.png" alt="Women's Health Illustration" class="floating-img">
+                </div>
+            </div>
+
+            <div class="why-section card-panel" style="text-align: center; margin: 60px 0;">
+                <h2 class="section-title">Why HerHealth?</h2>
+                <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+                    Your body goes through amazing changes every month. We built HerHealth to give you the tools and knowledge you need to understand your cycle, manage symptoms, and feel your absolute best. 
+                </p>
+            </div>
+
+            <h2 class="section-title">Explore Your Hub</h2>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                <div class="feature-card" onclick="navigateTo('tracker-view')" style="background: linear-gradient(to bottom, #fff, #ffe5ec);">
+                    <div class="card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h3>Period Tracker</h3>
+                    <p>Predict your next cycle and log symptoms easily.</p>
+                </div>
+                <div class="feature-card card-stagger" onclick="navigateTo('bmi-view')" style="background: linear-gradient(to bottom, #fff, #e0fbfc);">
+                    <div class="card-icon"><i class="fa-solid fa-weight-scale"></i></div>
+                    <h3>BMI Calculator</h3>
+                    <p>Check your Body Mass Index with tailored health tips.</p>
+                </div>
+                <div class="feature-card" onclick="navigateTo('learn-view')" style="background: linear-gradient(to bottom, #fff, #ffecd1);">
+                    <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Educational Hub</h3>
+                    <p>Learn about PCOS, PCOD, and Menopause management.</p>
+                </div>
+                <div class="feature-card card-stagger" onclick="navigateTo('plans-view')" style="background: linear-gradient(to bottom, #fff, #d8f3dc);">
+                    <div class="card-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                    <h3>Diet & Exercise</h3>
+                    <p>Get specialized nutrition and workout plans.</p>
+                </div>
+                <div class="feature-card" onclick="navigateTo('doctors-view')" style="background: linear-gradient(to bottom, #fff, #e0c3fc);">
+                    <div class="card-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3>Find a Doctor</h3>
+                    <p>Search for top gynaecologists near you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACKER VIEW -->
+        <section id="tracker-view" class="view fade-in hidden">
+            <h2 class="section-title">Period Tracker</h2>
+            <div class="tracker-container card-panel">
+                <div class="tracker-info">
+                    <h3 id="cycle-status">Your cycle predictions</h3>
+                    <p id="last-period-record" class="muted-text hidden">Your last logged period was on: <strong id="last-period-display">--</strong></p>
+                    <p id="next-period-text">Log your last period to get started.</p>
+                    
+                    <div class="log-form">
+                        <label for="last-period-date">First day of last period:</label>
+                        <input type="date" id="last-period-date">
+                        
+                        <label for="cycle-length">Average cycle length (days):</label>
+                        <input type="number" id="cycle-length" value="28" min="20" max="45">
+                        
+                        <button class="primary-btn" id="save-period-btn">Save & Calculate</button>
+                    </div>
+                    
+                    <div id="period-reminder" class="reminder-alert hidden">
+                        <i class="fa-solid fa-bell"></i>
+                        <span id="reminder-message">Your period is coming up soon! 🌸</span>
+                    </div>
+                </div>
+                <div class="tracker-visual">
+                    <div class="circle-progress">
+                        <span id="days-left-number">--</span>
+                        <span class="days-text">Days Left</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BMI VIEW -->
+        <section id="bmi-view" class="view fade-in hidden">
+            <h2 class="section-title">BMI Calculator</h2>
+            <div class="bmi-container card-panel">
+                <div class="bmi-inputs">
+                    <div class="input-group">
+                        <label>Select Gender:</label>
+                        <div class="gender-selection">
+                            <label class="gender-btn">
+                                <input type="radio" name="gender" value="female" checked>
+                                <span><i class="fa-solid fa-venus"></i> Female</span>
+                            </label>
+                            <label class="gender-btn">
+                                <input type="radio" name="gender" value="male">
+                                <span><i class="fa-solid fa-mars"></i> Male</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Height (cm): <span id="height-val">160</span></label>
+                        <input type="range" id="height-input" min="100" max="220" value="160">
+                    </div>
+                    <div class="input-group">
+                        <label>Weight (kg): <span id="weight-val">60</span></label>
+                        <input type="range" id="weight-input" min="30" max="150" value="60">
+                    </div>
+                    <button class="primary-btn" id="calculate-bmi-btn">Calculate</button>
+                </div>
+                <div class="bmi-result-box hidden" id="bmi-result-box">
+                    <h3 id="bmi-score">23.4</h3>
+                    <h4 id="bmi-category" class="normal-weight">Normal Weight</h4>
+                    <p id="bmi-tips">You are in a healthy weight range. Keep up the good work!</p>
+                    <div id="bmi-diet-chart" class="diet-chart-container">
+                        <!-- Diet chart injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARN VIEW -->
+        <section id="learn-view" class="view fade-in hidden">
+            <h2 class="section-title">Educational Hub</h2>
+            <div class="learn-tabs">
+                <button class="tab-btn active" data-tab="cycle">The Menstrual Cycle</button>
+                <button class="tab-btn" data-tab="pcos">PCOS & PCOD</button>
+                <button class="tab-btn" data-tab="menopause">Menopause</button>
+                <button class="tab-btn" data-tab="endo">Endometriosis</button>
+                <button class="tab-btn" data-tab="breast">Breast Health</button>
+                <button class="tab-btn" data-tab="facts">Period Facts</button>
+
+            </div>
+            
+            <div class="tab-content active" id="tab-cycle">
+                <div class="article-card card-panel">
+                    <h3 style="text-align: center;">The 4 Phases of the Menstrual Cycle</h3>
+                    <p style="text-align: center; margin-bottom: 40px;">The menstrual cycle is a complex, delicate interplay of hormones designed to prepare the body for pregnancy. A typical cycle lasts 28 days but can range from 21 to 35 days.</p>
+                    
+                    <!-- VISUAL CYCLE DIAGRAM -->
+                    <div class="cycle-wrapper">
+                        <div class="cycle-center">
+                            <span>28<br>Days</span>
+                        </div>
+                        <div class="cycle-node node-menstrual">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span class="node-tooltip">Menstrual Phase (Days 1-5)<br>Estrogen & Progesterone drop. Uterine lining sheds.</span>
+                        </div>
+                        <div class="cycle-node node-follicular">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span class="node-tooltip">Follicular Phase (Days 1-13)<br>FSH stimulates follicles. Estrogen rises. Energy increases.</span>
+                        </div>
+                        <div class="cycle-node node-ovulation">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span class="node-tooltip">Ovulation (Day 14)<br>LH surge. Mature egg released. Most fertile window.</span>
+                        </div>
+                        <div class="cycle-node node-luteal">
+                            <i class="fa-solid fa-moon"></i>
+                            <span class="node-tooltip">Luteal Phase (Days 15-28)<br>Progesterone rises to thicken lining. PMS symptoms may occur.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="phases-text-grid">
+                        <div class="phase-detail">
+                            <h4 style="color: #ff4d6d;"><i class="fa-solid fa-droplet"></i> 1. Menstrual Phase (Days 1-5)</h4>
+                            <p>This is when your period occurs. The thickened uterine lining sheds if pregnancy has not occurred. Estrogen and progesterone levels drop. You might feel fatigued and experience cramps.</p>
+                        </div>
+                        <div class="phase-detail">
+                            <h4 style="color: #4CAF50;"><i class="fa-solid fa-leaf"></i> 2. Follicular Phase (Days 1-13)</h4>
+                            <p>Overlapping with your period, the pituitary gland releases FSH. This stimulates ovaries to produce follicles. Estrogen rises, which thickens the uterine lining. You usually feel more energetic.</p>
+                        </div>
+                        <div class="phase-detail">
+                            <h4 style="color: #FF9800;"><i class="fa-solid fa-certificate"></i> 3. Ovulation Phase (Day 14)</h4>
+                            <p>A surge in Luteinizing Hormone (LH) causes the dominant follicle to release a mature egg. This is your most fertile window. You may notice a slight rise in basal body temperature.</p>
+                        </div>
+                        <div class="phase-detail">
+                            <h4 style="color: #9C27B0;"><i class="fa-solid fa-moon"></i> 4. Luteal Phase (Days 15-28)</h4>
+                            <p>After releasing the egg, the follicle becomes the <em>corpus luteum</em>, pumping out progesterone. If unfertilized, hormones plunge, causing PMS symptoms, and a new cycle begins.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-facts">
+                <div class="article-card card-panel">
+                    <h3>Did You Know? Fascinating Period Facts</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>You don't lose as much blood as you think:</strong> The average blood loss during a period is only about 2 to 3 tablespoons (30-40ml), though it can look like more!</li>
+                        <li><strong>Periods can affect your voice:</strong> Hormonal shifts can slightly alter the vocal cords. Female singers sometimes notice less vocal control in the days right before menstruation.</li>
+                        <li><strong>Synchronized cycles are a myth:</strong> The idea that women living together get their periods at the same time (the McClintock effect) has been debunked by modern research. It's just statistical overlap!</li>
+                        <li><strong>Cold weather can make it worse:</strong> Winter months can lead to longer, heavier, and more painful periods due to less sunlight and lower vitamin D levels, which affects mood and hormones.</li>
+                        <li><strong>You are born with all your eggs:</strong> A female fetus has around 6 to 7 million eggs. By puberty, about 300,000 remain, and only about 300 to 400 are ever ovulated during a lifetime.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-pcos">
+                <div class="article-card card-panel">
+                    <h3>Understanding PCOS and PCOD</h3>
+                    <p><strong>Polycystic Ovary Syndrome (PCOS)</strong> is an endocrine and metabolic disorder that is more severe. <strong>Polycystic Ovarian Disease (PCOD)</strong> is a condition where ovaries produce many immature eggs which turn into cysts over time.</p>
+                    <h4 style="color:var(--primary); margin-top:20px;">Detailed Symptoms:</h4>
+                    <ul>
+                        <li>Irregular or completely absent periods</li>
+                        <li>Unexplained weight gain or difficulty losing weight</li>
+                        <li>Hirsutism (excess facial and body hair)</li>
+                        <li>Severe hormonal acne or oily skin</li>
+                        <li>Thinning hair on the scalp</li>
+                        <li>Insulin resistance (darkening of skin around the neck)</li>
+                    </ul>
+                    <h4 style="color:var(--primary); margin-top:20px;">Long-Term Risks & Management:</h4>
+                    <p>If left unmanaged, PCOS can lead to type 2 diabetes, high blood pressure, and endometrial cancer. However, it is highly manageable. Key strategies include maintaining a low-glycemic diet, engaging in regular resistance training, and managing stress. Supplements like Myo-inositol are often recommended by doctors.</p>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-menopause">
+                <div class="article-card card-panel">
+                    <h3>Navigating Menopause</h3>
+                    <p>Menopause is a natural biological milestone marking the permanent end of menstrual cycles, officially diagnosed after 12 consecutive months without a period. It usually occurs between ages 45 and 55.</p>
+                    <h4 style="color:var(--primary); margin-top:20px;">The Three Stages:</h4>
+                    <ul>
+                        <li><strong>Perimenopause:</strong> The transition phase leading up to menopause. It can start 8 to 10 years before menopause. Hormones fluctuate wildly, causing irregular periods.</li>
+                        <li><strong>Menopause:</strong> The exact point in time when you have gone a full year without a period.</li>
+                        <li><strong>Postmenopause:</strong> The years following menopause. Symptoms may ease, but lower estrogen increases the risk for osteoporosis and heart disease.</li>
+                    </ul>
+                    <h4 style="color:var(--primary); margin-top:20px;">Management Tips:</h4>
+                    <p>Staying active with weight-bearing exercises protects bone density. Eating a diet rich in calcium and vitamin D is crucial. Dressing in breathable layers helps manage hot flashes. Hormone Replacement Therapy (HRT) may be an option for severe symptoms, but requires a doctor's consultation.</p>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-endo">
+                <div class="article-card card-panel">
+                    <h3>Endometriosis & Uterine Fibroids</h3>
+                    <p><strong>Endometriosis</strong> is a condition where tissue similar to the lining of the uterus grows outside it, causing severe pain and potential fertility issues. <strong>Uterine Fibroids</strong> are noncancerous growths of the uterus that often appear during childbearing years.</p>
+                    <h4 style="color:var(--primary); margin-top:20px;">Common Symptoms:</h4>
+                    <ul>
+                        <li>Painful periods (dysmenorrhea) and pelvic pain</li>
+                        <li>Pain during or after intercourse</li>
+                        <li>Pain with bowel movements or urination</li>
+                        <li>Excessive bleeding or bleeding between periods</li>
+                        <li>Infertility in some cases of endometriosis</li>
+                    </ul>
+                    <h4 style="color:var(--primary); margin-top:20px;">When to See a Doctor:</h4>
+                    <p>If you experience pelvic pain that interferes with your daily life, or if your periods have become significantly heavier or more painful, consult a gynaecologist. Early diagnosis is key to managing symptoms and preventing complications.</p>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-breast">
+                <div class="article-card card-panel">
+                    <h3>Breast Health & Awareness</h3>
+                    <p>Breast health is a vital part of overall wellness. Being "breast aware" means knowing how your breasts normally look and feel so you can notice any changes early.</p>
+                    <h4 style="color:var(--primary); margin-top:20px;">Self-Examination Tips (Monthly):</h4>
+                    <ul>
+                        <li><strong>Look:</strong> In front of a mirror, check for changes in size, shape, or skin texture.</li>
+                        <li><strong>Feel:</strong> Use the pads of your fingers in a circular motion to check for lumps or thickening.</li>
+                        <li><strong>Coverage:</strong> Ensure you check the entire breast area, including up to the collarbone and into the armpits.</li>
+                    </ul>
+                    <h4 style="color:var(--primary); margin-top:20px;">Warning Signs:</h4>
+                    <p>Look out for new lumps, persistent pain, skin dimpling (like an orange peel), nipple discharge, or changes in the nipple (like pulling inward). Most lumps are not cancerous, but all should be checked by a professional immediately.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANS VIEW -->
+        <section id="plans-view" class="view fade-in hidden">
+            <h2 class="section-title">Diet & Exercise Plans</h2>
+            <div class="plans-grid">
+                <div class="plan-card card-panel">
+                    <div class="plan-img-wrapper">
+                        <img src="diet-plan.png" alt="Healthy Diet" class="plan-img zoom-hover">
+                    </div>
+                    <div class="plan-header bg-gradient-1">
+                        <h3>Hormone Balance Diet</h3>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="meal-plan-list">
+                            <li>
+                                <strong>Monday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Poha & Moong Dal Chilla</p>
+                                    <p><span>Lunch:</span> Dal Tadka, Mixed Sabzi, 1 Roti</p>
+                                    <p><span>Snacks:</span> Roasted Makhana</p>
+                                    <p><span>Dinner:</span> Light Veg Soup & Salad</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Tuesday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Oats Idli & Coconut Chutney</p>
+                                    <p><span>Lunch:</span> Paneer Tikka & Green Salad</p>
+                                    <p><span>Snacks:</span> Green Tea & Almonds</p>
+                                    <p><span>Dinner:</span> Sautéed Veggies & Grilled Tofu</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Wednesday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Besan Chilla & Mint Chutney</p>
+                                    <p><span>Lunch:</span> Rajma, 1 Roti, Cucumber Salad</p>
+                                    <p><span>Snacks:</span> 1 Apple & Peanut Butter</p>
+                                    <p><span>Dinner:</span> Bottle Gourd (Lauki) & 1 Roti</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Thursday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Curd with Mixed Fruits</p>
+                                    <p><span>Lunch:</span> Soya Chunk Curry & Brown Rice</p>
+                                    <p><span>Snacks:</span> Roasted Chana</p>
+                                    <p><span>Dinner:</span> Mixed Dal & Stir-fried Spinach</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Friday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Upma with Mixed Veggies</p>
+                                    <p><span>Lunch:</span> Chicken/Paneer Stir-fry</p>
+                                    <p><span>Snacks:</span> Coconut Water</p>
+                                    <p><span>Dinner:</span> Masala Oats</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Saturday</strong>
+                                <div class="meal-details">
+                                    <p><span>Breakfast:</span> Egg/Paneer Bhurji & Multigrain Roti</p>
+                                    <p><span>Lunch:</span> Mixed Veg Pulao with Raita</p>
+                                    <p><span>Snacks:</span> Boiled Sweet Potato Chaat</p>
+                                    <p><span>Dinner:</span> Light Moong Dal & 1 Roti</p>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Sunday</strong>
+                                <div class="meal-details">
+                                    <p><span>All Day:</span> 🍩 Cheat Day! Enjoy your favorite treats mindfully.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="plan-card card-panel">
+                    <div class="plan-img-wrapper">
+                        <img src="yoga-fitness.png" alt="Yoga Fitness" class="plan-img zoom-hover">
+                    </div>
+                    <div class="plan-header bg-gradient-2">
+                        <h3>PCOS Friendly Workout</h3>
+                    </div>
+                    <div class="plan-body">
+                        <ul>
+                            <li><strong>Monday:</strong> 30 mins Low-impact Strength Training</li>
+                            <li><strong>Tuesday:</strong> 45 mins Brisk Walking</li>
+                            <li><strong>Wednesday:</strong> 40 mins Pilates (Core Focus)</li>
+                            <li><strong>Thursday:</strong> Active Rest (Stretching / Light Yoga)</li>
+                            <li><strong>Friday:</strong> 30 mins Full Body Resistance Bands</li>
+                            <li><strong>Saturday:</strong> 45 mins Cycling or Swimming</li>
+                            <li><strong>Sunday:</strong> 🛌 Rest Day (Cheat Day)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZZES VIEW -->
+        <section id="quizzes-view" class="view fade-in hidden">
+            <h2 class="section-title">Health Quizzes</h2>
+            <div class="quiz-container card-panel" id="quiz-start">
+                <h3>Do You Know Your Cycle?</h3>
+                <p>Test your knowledge about women's health and the menstrual cycle.</p>
+                <button class="primary-btn" id="start-quiz-btn">Start Quiz</button>
+            </div>
+            
+            <div class="quiz-container card-panel hidden" id="quiz-active">
+                <h4 id="question-text">Question 1/3</h4>
+                <div class="quiz-options" id="quiz-options">
+                    <!-- Buttons injected via JS -->
+                </div>
+            </div>
+            
+            <div class="quiz-container card-panel hidden" id="quiz-result">
+                <h3>Quiz Complete!</h3>
+                <p>You scored <span id="quiz-score">0</span> out of 3.</p>
+                <button class="primary-btn outline" id="restart-quiz-btn">Restart Quiz</button>
+            </div>
+        </section>
+
+        <!-- DOCTORS VIEW -->
+        <section id="doctors-view" class="view fade-in hidden">
+            <h2 class="section-title">Find a Gynaecologist</h2>
+            <div class="doctor-search-container card-panel">
+                <p style="text-align: center; margin-bottom: 20px;">Enter your city to find top-rated gynaecologists near you.</p>
+                <div class="search-bar">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="location-input" placeholder="e.g. Delhi, Mumbai, Bangalore...">
+                    <button class="primary-btn" id="search-doctor-btn">Search</button>
+                </div>
+            </div>
+            
+            <div id="doctor-results" class="doctor-grid hidden" style="margin-bottom: 40px;">
+                <!-- Doctor cards will be injected here via JS -->
+            </div>
+
+            <div id="featured-doctors">
+                <h3 style="text-align: center; margin: 40px 0 20px; color: var(--primary-dark);">Top Featured Gynaecologists</h3>
+                <div class="doctor-grid">
+                    <div class="doctor-card">
+                        <div class="doctor-header">
+                            <div class="doc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <h3>Dr. Anjali Sharma</h3>
+                                <p style="color:var(--primary-dark); font-size:0.85rem; margin-top:2px;"><strong>Experience:</strong> 15 Years</p>
+                            </div>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Connaught Place, New Delhi</p>
+                        <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-header">
+                            <div class="doc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <h3>Dr. Sneha Patil</h3>
+                                <p style="color:var(--primary-dark); font-size:0.85rem; margin-top:2px;"><strong>Experience:</strong> 12 Years</p>
+                            </div>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Bandra West, Mumbai</p>
+                        <p><i class="fa-solid fa-phone"></i> +91 91234 56789</p>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-header">
+                            <div class="doc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <h3>Dr. Priya Reddy</h3>
+                                <p style="color:var(--primary-dark); font-size:0.85rem; margin-top:2px;"><strong>Experience:</strong> 8 Years</p>
+                            </div>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Indiranagar, Bangalore</p>
+                        <p><i class="fa-solid fa-phone"></i> +91 98888 77777</p>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-header">
+                            <div class="doc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <h3>Dr. Meena Iyer</h3>
+                                <p style="color:var(--primary-dark); font-size:0.85rem; margin-top:2px;"><strong>Experience:</strong> 25 Years</p>
+                            </div>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Adyar, Chennai</p>
+                        <p><i class="fa-solid fa-phone"></i> +91 94444 33333</p>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-header">
+                            <div class="doc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <h3>Dr. Suman Rao</h3>
+                                <p style="color:var(--primary-dark); font-size:0.85rem; margin-top:2px;"><strong>Experience:</strong> 18 Years</p>
+                            </div>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Banjara Hills, Hyderabad</p>
+                        <p><i class="fa-solid fa-phone"></i> +91 93333 22222</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer class="site-footer">
+        Website made by Ayushi Kapoor and Riya Tiwari
+    </footer>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fab-container">
+        <button class="fab-main" onclick="window.scrollTo({top: 0, behavior: 'smooth'});"><i class="fa-solid fa-arrow-up"></i></button>
+        <div class="fab-options">
+            <button class="fab-btn" onclick="navigateTo('tracker-view')" data-tooltip="Log Period"><i class="fa-solid fa-droplet"></i></button>
+            <button class="fab-btn" onclick="navigateTo('bmi-view')" data-tooltip="Calculate BMI"><i class="fa-solid fa-weight-scale"></i></button>
+            <button class="fab-btn" onclick="navigateTo('quizzes-view')" data-tooltip="Take Quiz"><i class="fa-solid fa-clipboard-question"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== CHATBOT WIDGET ===== -->
+    <div id="chatbot-widget" class="chatbot-widget">
+        <!-- Toggle button -->
+        <button class="chatbot-toggle" id="chatbot-toggle-btn" onclick="toggleChatbot()" aria-label="Open chat">
+            <img src="chatbot-avatar.png" alt="HerBot" class="chatbot-toggle-img">
+            <span class="chatbot-badge" id="chatbot-badge">1</span>
+        </button>
+
+        <!-- Chat window -->
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-header-left">
+                    <img src="chatbot-avatar.png" alt="HerBot" class="chatbot-header-img">
+                    <div>
+                        <h4>HerBot 💖</h4>
+                        <span class="chatbot-online">● Online</span>
+                    </div>
+                </div>
+                <button class="chatbot-close-btn" onclick="toggleChatbot()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="chatbot-messages" id="chatbot-messages">
+                <!-- Messages injected by JS -->
+            </div>
+
+            <div class="chatbot-suggestions" id="chatbot-suggestions">
+                <!-- Quick-reply chips injected by JS -->
+            </div>
+
+            <div class="chatbot-input-row">
+                <input type="text" id="chatbot-input" placeholder="Ask me anything 🌸" onkeydown="if(event.key==='Enter')sendChatMessage()">
+                <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

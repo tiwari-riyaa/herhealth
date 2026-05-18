@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - HerHealth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: 100px auto 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 107, 158, 0.1);
+            position: relative;
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .checkout-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+        }
+        .checkout-form {
+            display: grid;
+            gap: 20px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .input-group input, .input-group select {
+            padding: 12px;
+            border: 2px solid #ffe5ec;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary);
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .place-order-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .place-order-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 158, 0.4);
+        }
+
+        /* Success Modal */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .success-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .success-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .success-overlay.show .success-modal {
+            transform: scale(1);
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .success-modal h2 {
+            color: var(--primary-dark);
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+        }
+        .success-modal p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        .back-btn {
+            background: #ffe5ec;
+            color: var(--primary-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #ffc2d1;
+        }
+        
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <i class="fa-solid fa-venus"></i>
+            <span>HerHealth</span>
+        </div>
+        <div class="nav-links">
+            <a href="shop-for-her.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Back to Shop</a>
+        </div>
+    </nav>
+
+    <div class="checkout-container fade-in">
+        <div class="checkout-header">
+            <h1>Secure Checkout 🛍️</h1>
+            <p>Where should we send this lovely hamper?</p>
+        </div>
+
+        <form class="checkout-form" id="checkout-form" onsubmit="handleCheckout(event)">
+            <div class="row">
+                <div class="input-group">
+                    <label>Recipient's Name</label>
+                    <input type="text" placeholder="e.g. Priya Sharma" required>
+                </div>
+                <div class="input-group">
+                    <label>Recipient's Phone Number</label>
+                    <input type="tel" placeholder="e.g. +91 9876543210" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Street Address</label>
+                <input type="text" placeholder="House number, street name, apartment..." required>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>City</label>
+                    <input type="text" placeholder="e.g. Mumbai" required>
+                </div>
+                <div class="input-group">
+                    <label>Pincode / ZIP</label>
+                    <input type="text" placeholder="e.g. 400001" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Add a little gift note! 💌 (Optional)</label>
+                <input type="text" placeholder="e.g. Thinking of you, lots of love!">
+            </div>
+
+            <div class="input-group">
+                <label>Payment Method</label>
+                <select>
+                    <option>Credit/Debit Card</option>
+                    <option>UPI / Google Pay</option>
+                    <option>Cash on Delivery</option>
+                </select>
+            </div>
+
+            <button type="submit" class="place-order-btn">Place Order ✨</button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-modal">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h2>Order Placed! 🎉</h2>
+            <p>Your beautiful hamper is on its way. We'll send you a tracking link shortly.</p>
+            <a href="shop-for-her.html" class="back-btn">Keep Shopping</a>
+        </div>
+    </div>
+
+    <!-- Floating hearts animation script -->
+    <script>
+        function handleCheckout(e) {
+            e.preventDefault();
+            // Show the success modal
+            document.getElementById('success-overlay').classList.add('show');
+            
+            // Generate some floating hearts
+            for(let i=0; i<15; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.zIndex = '9999';
+            heart.style.transition = 'transform 3s ease-out, top 3s ease-out, opacity 3s';
+            heart.style.opacity = '1';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.style.top = '-10vh';
+                heart.style.transform = `translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)`;
+                heart.style.opacity = '0';
+            }, 50);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
